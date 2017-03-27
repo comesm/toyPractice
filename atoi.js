@@ -23,20 +23,6 @@ var myAtoi = function(string) {
 console.log(myAtoi('  234'));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var myAtoiRefactor = function(str) {
   let base = 0;
   let i = 0;
