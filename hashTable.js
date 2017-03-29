@@ -1,13 +1,19 @@
 
 var HashTable = function() {
   this.storage = new Array(5);
+  this.count = 0;
 
 }
 
 HashTable.prototype.insert = function(key, val) {
-  var index = key.charCodeAt(0) % 5;
+
+  var index = generateHash(key);
   var bucket = this.storage[index] || new List();
   if(this.storage[index] === undefined) {
+    this.count++;
+    if(this.count / this.storage.length > .6) {
+      console.log('double the storage size');
+    }
     this.storage[index] = bucket;
     bucket.addToEnd(key, val);
   } else {
