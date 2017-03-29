@@ -17,8 +17,6 @@ Bst.prototype.inOrderTraverse = function(cb) {
       this.right.inOrderTraverse(cb);
     }
   }
-
-
 }
 
 Bst.prototype.preOrderTraverse = function(cb) {
@@ -33,7 +31,6 @@ Bst.prototype.preOrderTraverse = function(cb) {
       this.right.preOrderTraverse(cb);
     }
   }
-
 }
 
 Bst.prototype.postOrderTraverse = function(cb) {
@@ -53,12 +50,40 @@ Bst.prototype.postOrderTraverse = function(cb) {
   //return;
 }
 
-Bst.prototype.depthFirstSrch = function(value, cb) {
-
-
+Bst.prototype.depthFirstSrch = function(srcValue, cb) {
+  if(this.value === srcValue) {
+    cb(this.value, this.left, this.right);
+    return;
+  } else if(this.right === null && this.left === null) {
+    return;
+  }
+  if(this.left !== null) {
+    this.left.depthFirstSrch(srcValue, cb);
+  }
+  if(this.right !== null) {
+    this.right.depthFirstSrch(srcValue, cb);
+  }
 }
 
-Bst.prototype.breadthFirstSrch = function(value) {
+Bst.prototype.breadthFirstSrch = function(value, cb) {
+  var queue = [];
+  queue.push(this);
+  //use 'shift' to remove from front of array
+  while(queue.length !== 0) {
+    var front = queue.shift();
+    //console.log(front);
+    if(front.value === value) {
+      cb(value, this.left, this.right);
+      return;
+    } else {
+    if(this.left !== null) {
+      queue.push(this.left);
+    }
+    if(this.right !== null) {
+      queue.push(this.right);
+     }
+    }
+  }
 
 }
 
@@ -67,11 +92,7 @@ Bst.prototype.rebalance = function() {
 }
 
 Bst.prototype.insert = function(node) {
-  // console.log(this.value)
-  // if(this.value === null) {
-  //   this.value = node;
-  //   return;
-  // }
+
   if(this.value > node.value) {
     if(this.left === null) {
       this.left = node;
@@ -108,9 +129,9 @@ tree.insert(node4);
 tree.insert(node5);
 //console.log(tree)
 
-console.log(tree.depthFirstSrch(18, function(val) {
-  console.log('left child', this.left);
-  console.log('right child', this.right);
+console.log(tree.breadthFirstSrch(7, function(val, left, right) {
+  console.log('left child', left);
+  console.log('right child', right);
   console.log('search val', val)
 }));
 
