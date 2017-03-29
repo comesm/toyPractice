@@ -68,21 +68,28 @@ Bst.prototype.depthFirstSrch = function(srcValue, cb) {
 Bst.prototype.breadthFirstSrch = function(value, cb) {
   var queue = [];
   queue.push(this);
+  let i = 0;
   //use 'shift' to remove from front of array
   while(queue.length !== 0) {
+    if(i === 15) {
+      break;
+    }
     var front = queue.shift();
-    //console.log(front);
+    // console.log('78', queue.length);
     if(front.value === value) {
-      cb(value, this.left, this.right);
+      cb(value, front.left, front.right);
       return;
     } else {
-    if(this.left !== null) {
-      queue.push(this.left);
+    if(front.left !== null) {
+      console.log('84', front.left.value);
+      queue.push(front.left);
     }
-    if(this.right !== null) {
-      queue.push(this.right);
-     }
+    if(front.right !== null) {
+      console.log('88', front.right.value);
+      queue.push(front.right);
+      }
     }
+    i+=1;
   }
 
 }
@@ -129,7 +136,7 @@ tree.insert(node4);
 tree.insert(node5);
 //console.log(tree)
 
-console.log(tree.breadthFirstSrch(7, function(val, left, right) {
+console.log(tree.breadthFirstSrch(20, function(val, left, right) {
   console.log('left child', left);
   console.log('right child', right);
   console.log('search val', val)
