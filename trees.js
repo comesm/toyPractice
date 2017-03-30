@@ -96,6 +96,7 @@ Bst.prototype.breadthFirstSrch = function(value, cb) {
 
 Bst.prototype.rebalance = function() {
 
+
 }
 
 Bst.prototype.insert = function(node) {
