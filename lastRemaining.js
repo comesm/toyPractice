@@ -20,3 +20,24 @@ function lastRemaining(n) {
 }
 
 console.log(lastRemaining(9));
+
+/*
+double pay increase
+Jax - top engineers in the area
+  good place to grow
+  -flexibility and control
+  -as much freedom as you want
+  -no schedule
+  -care about work-life balance
+  -react developer need
+   -converting all applications into
+     --react and node
+     --2 teams diamond claims team
+       --contract positions - convert full
+         -time eventually - 6 months based
+           on performance
+
+       --care management domain
+
+
+*/
